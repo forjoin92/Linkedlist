@@ -113,4 +113,15 @@ func (l *List) PushBack(v interface{}) *Element {
 	return l.insertValue(v, l.tail)
 }
 
-
+func (l *List) Reverse() *List {
+	pre, n := l.head, l.head.next
+	pre.next = nil
+	for n != nil {
+		n1 := n.next
+		n.next = pre
+		pre = n
+		n = n1
+	}
+	l.head, l.tail = l.tail, l.head
+	return l
+}
