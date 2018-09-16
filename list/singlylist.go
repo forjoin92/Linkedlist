@@ -68,7 +68,14 @@ func (l *List) insert(e, at *Element) *Element {
 }
 
 func (l *List) insertValue(v interface{}, at *Element) *Element {
-	return l.insert(&Element{value:v}, at)
+	return l.insert(&Element{value: v}, at)
+}
+
+func (l *List) InsertAfter(v interface{}, at *Element) *Element {
+	if at.list != l {
+		return nil
+	}
+	return l.insertValue(v, at)
 }
 
 func (l *List) remove(e *Element) *Element {
